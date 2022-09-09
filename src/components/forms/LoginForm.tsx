@@ -1,3 +1,5 @@
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
 import { Button } from "../../styled/buttons";
 import {
   Form,
@@ -5,18 +7,37 @@ import {
   InputField,
   InputLabel,
 } from "../../styled/form";
-import { LinkContainer, StyledLink } from "../../styled/shared";
+import { ErrorFeedback, LinkContainer, StyledLink } from "../../styled/shared";
+import { loginSchema } from "../../utils/validations";
+
+type FormValues = {
+  email: string;
+  password: string;
+};
 
 const LoginForm = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormValues>({ resolver: yupResolver(loginSchema) });
+
+  const onSubmit = () => {
+    console.log("login submit");
+  };
   return (
-    <Form>
+    <Form onSubmit={handleSubmit(onSubmit)}>
       <InputContainer marginBottom="8px">
         <InputLabel htmlFor="email">Email</InputLabel>
-        <InputField id="email" />
+        <InputField id="email" {...register("email")} />
+        {errors?.email && <ErrorFeedback>{errors.email.message}</ErrorFeedback>}
       </InputContainer>
       <InputContainer>
         <InputLabel htmlFor="password">Password</InputLabel>
-        <InputField id="password" type="password" />
+        <InputField id="password" type="password" {...register("password")} />
+        {errors?.password && (
+          <ErrorFeedback>{errors.password.message}</ErrorFeedback>
+        )}
       </InputContainer>
       <Button>Login</Button>
       <LinkContainer>

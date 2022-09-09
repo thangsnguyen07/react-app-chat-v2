@@ -11,3 +11,8 @@ export const registerSchema = yup.object().shape({
       "Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character.",
     ),
 });
+
+export const loginSchema = yup.object().shape({
+  email: yup.string().required("Required").email("Invalid Email"),
+  password: yup.string().required("Required"),
+});
