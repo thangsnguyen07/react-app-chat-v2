@@ -11,4 +11,15 @@ export const Button = styled.button`
   padding: 24px 0;
   border-radius: ${(props) => props.theme.borderRadius};
   margin-top: 8px;
+  font-weight: 600;
+  transition: ${(props) => props.theme.transition};
+
+  &:hover,
+  &:focus {
+    background-color: #3415fd;
+  }
+
+  &:active {
+    background-color: #2b09ff;
+  }
 `;

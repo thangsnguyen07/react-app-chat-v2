@@ -5,6 +5,7 @@ import {
   InputField,
   InputLabel,
 } from "../../styled/form";
+import { LinkContainer, StyledLink } from "../../styled/shared";
 
 const LoginForm = () => {
   return (
@@ -15,9 +16,13 @@ const LoginForm = () => {
       </InputContainer>
       <InputContainer>
         <InputLabel htmlFor="password">Password</InputLabel>
-        <InputField id="password" />
+        <InputField id="password" type="password" />
       </InputContainer>
       <Button>Login</Button>
+      <LinkContainer>
+        <span>Don&#39;t have an account? </span>
+        <StyledLink to="/register">Register</StyledLink>
+      </LinkContainer>
     </Form>
   );
 };
