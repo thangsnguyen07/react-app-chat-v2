@@ -22,3 +22,8 @@ export const StyledLink = styled(Link)`
     color: #fff;
   }
 `;
+
+export const ErrorFeedback = styled.p`
+  font-size: 12px;
+  color: red;
+`;
