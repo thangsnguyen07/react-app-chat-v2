@@ -1,12 +1,10 @@
 import styled from "styled-components";
+import { InputContainerProps } from "./styledProps";
 
 export const Form = styled.form`
   width: 800px;
 `;
 
-interface InputContainerProps {
-  marginBottom?: string;
-}
 export const InputContainer = styled.div<InputContainerProps>`
   width: 100%;
   background-color: ${(props) => props.theme.dark};

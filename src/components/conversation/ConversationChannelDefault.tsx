@@ -1,4 +1,4 @@
-import { StyledConversationChannel } from "../../styled/shared";
+import { StyledConversationChannel } from "../../styled/conversation";
 
 const ConversationChannelDefault = () => {
   return (

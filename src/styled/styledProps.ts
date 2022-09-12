@@ -1,6 +1,9 @@
-export type PageProps = Partial<{
-  display: string;
-  flexDirection: string;
-  justifyContent: string;
-  alignItems: string;
-}>;
+export interface InputContainerProps {
+  marginBottom?: string;
+}
+export interface PageProps {
+  display?: string;
+  flexDirection?: string;
+  justifyContent?: string;
+  alignItems?: string;
+}

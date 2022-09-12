@@ -1,13 +1,42 @@
-import { StyledConversationSidebar } from "../../styled/shared";
-import { MdPostAdd } from "react-icons/md";
+import { FC } from "react";
+import {
+  ConversationSidebarContainer,
+  ConversationSidebarHeader,
+  ConversationSidebarItem,
+  ConversationSidebarItemAvatar,
+  ConversationSidebarItemMessage,
+  ConversationSidebarItemName,
+  StyledConversationSidebar,
+} from "../../styled/conversation";
+import { FiEdit } from "react-icons/fi";
+import { Conversation } from "../../utils/interfaces";
 
-const ConversationSidebar = () => {
+interface Props {
+  conversations: Conversation[];
+}
+
+const ConversationSidebar: FC<Props> = ({ conversations }) => {
   return (
     <StyledConversationSidebar>
-      <header>
+      <ConversationSidebarHeader>
         <h3>Sidebar Header</h3>
-        <MdPostAdd size={32} />
-      </header>
+        <FiEdit size={32} />
+      </ConversationSidebarHeader>
+      <ConversationSidebarContainer>
+        {conversations.map((conversation) => (
+          <ConversationSidebarItem key={conversation.id}>
+            <ConversationSidebarItemAvatar></ConversationSidebarItemAvatar>
+            <div>
+              <ConversationSidebarItemName>
+                {conversation.name}
+              </ConversationSidebarItemName>
+              <ConversationSidebarItemMessage>
+                {conversation.lastMessage}
+              </ConversationSidebarItemMessage>
+            </div>
+          </ConversationSidebarItem>
+        ))}
+      </ConversationSidebarContainer>
     </StyledConversationSidebar>
   );
 };
