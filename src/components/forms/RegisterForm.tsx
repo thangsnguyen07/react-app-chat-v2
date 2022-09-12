@@ -34,12 +34,14 @@ const RegisterForm = () => {
     <Form onSubmit={handleSubmit(onSubmit)}>
       <InputContainer>
         <InputLabel htmlFor="email">Email</InputLabel>
+        {/* eslint-disable-next-line react/jsx-props-no-spreading */}
         <InputField id="email" {...register("email")} />
         {errors?.email && <ErrorFeedback>{errors.email.message}</ErrorFeedback>}
       </InputContainer>
       <FlexBox>
         <InputContainer>
           <InputLabel htmlFor="firstName">First Name</InputLabel>
+          {/* eslint-disable-next-line react/jsx-props-no-spreading */}
           <InputField id="firstName" {...register("firstName")} />
           {errors?.firstName && (
             <ErrorFeedback>{errors.firstName.message}</ErrorFeedback>
@@ -47,6 +49,7 @@ const RegisterForm = () => {
         </InputContainer>
         <InputContainer>
           <InputLabel htmlFor="lastName">Last Name</InputLabel>
+          {/* eslint-disable-next-line react/jsx-props-no-spreading */}
           <InputField id="lastName" {...register("lastName")} />
           {errors?.lastName && (
             <ErrorFeedback>{errors.lastName.message}</ErrorFeedback>
@@ -55,6 +58,7 @@ const RegisterForm = () => {
       </FlexBox>
       <InputContainer>
         <InputLabel htmlFor="password">Password</InputLabel>
+        {/* eslint-disable-next-line react/jsx-props-no-spreading */}
         <InputField id="password" type="password" {...register("password")} />
         {errors?.password && (
           <ErrorFeedback>{errors.password.message}</ErrorFeedback>

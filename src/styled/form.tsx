@@ -20,7 +20,7 @@ export const InputField = styled.input`
   background-color: inherit;
   outline: none;
   border: none;
-  border-bottom: 1px solid ${(props) => props.theme.lightDark};
+  border-bottom: 1px solid ${(props) => props.theme.gray};
   font-size: 16px;
   width: 100%;
   margin: 4px 0;
@@ -28,7 +28,7 @@ export const InputField = styled.input`
 
 export const InputLabel = styled.label`
   display: block;
-  color: ${(props) => props.theme.lightDark};
+  color: ${(props) => props.theme.gray};
   font-size: 14px;
   margin: 4px 0;
 `;

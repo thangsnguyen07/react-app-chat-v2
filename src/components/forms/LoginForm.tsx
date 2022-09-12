@@ -29,11 +29,13 @@ const LoginForm = () => {
     <Form onSubmit={handleSubmit(onSubmit)}>
       <InputContainer marginBottom="8px">
         <InputLabel htmlFor="email">Email</InputLabel>
+        {/* eslint-disable-next-line react/jsx-props-no-spreading */}
         <InputField id="email" {...register("email")} />
         {errors?.email && <ErrorFeedback>{errors.email.message}</ErrorFeedback>}
       </InputContainer>
       <InputContainer>
         <InputLabel htmlFor="password">Password</InputLabel>
+        {/* eslint-disable-next-line react/jsx-props-no-spreading */}
         <InputField id="password" type="password" {...register("password")} />
         {errors?.password && (
           <ErrorFeedback>{errors.password.message}</ErrorFeedback>
