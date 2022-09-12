@@ -10,12 +10,19 @@ import {
 } from "../../styled/conversation";
 import { FiEdit } from "react-icons/fi";
 import { Conversation } from "../../utils/interfaces";
+import { useNavigate } from "react-router-dom";
 
 interface Props {
   conversations: Conversation[];
 }
 
 const ConversationSidebar: FC<Props> = ({ conversations }) => {
+  const navigate = useNavigate();
+
+  const onConversationClick = (conversationId: string): void => {
+    navigate(`${conversationId}`);
+  };
+
   return (
     <StyledConversationSidebar>
       <ConversationSidebarHeader>
@@ -24,7 +31,10 @@ const ConversationSidebar: FC<Props> = ({ conversations }) => {
       </ConversationSidebarHeader>
       <ConversationSidebarContainer>
         {conversations.map((conversation) => (
-          <ConversationSidebarItem key={conversation.id}>
+          <ConversationSidebarItem
+            key={conversation.id}
+            onClick={() => onConversationClick(conversation.id)}
+          >
             <ConversationSidebarItemAvatar></ConversationSidebarItemAvatar>
             <div>
               <ConversationSidebarItemName>
