@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-
+import { useNavigate } from "react-router-dom";
 import { Button } from "../../styled/buttons";
 import {
   FlexBox,
@@ -11,23 +11,24 @@ import {
 } from "../../styled/form";
 import { ErrorFeedback, LinkContainer, StyledLink } from "../../styled/shared";
 import { registerSchema } from "../../utils/validations";
-
-type FormValues = {
-  email: string;
-  firstName: string;
-  lastName: string;
-  password: string;
-};
+import { RegisterParams } from "../../utils/interfaces";
+import { registerUser } from "../../services/auth";
 
 const RegisterForm = () => {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormValues>({ resolver: yupResolver(registerSchema) });
+  } = useForm<RegisterParams>({ resolver: yupResolver(registerSchema) });
 
-  const onSubmit = (data: FormValues) => {
-    console.log(data);
+  const onSubmit = async (data: RegisterParams) => {
+    try {
+      await registerUser(data);
+      navigate("/conversations");
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (

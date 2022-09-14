@@ -1,5 +1,7 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import { loginUser } from "../../services/auth";
 import { Button } from "../../styled/buttons";
 import {
   Form,
@@ -8,22 +10,24 @@ import {
   InputLabel,
 } from "../../styled/form";
 import { ErrorFeedback, LinkContainer, StyledLink } from "../../styled/shared";
+import { UserCredentials } from "../../utils/interfaces";
 import { loginSchema } from "../../utils/validations";
-
-type FormValues = {
-  email: string;
-  password: string;
-};
 
 const LoginForm = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormValues>({ resolver: yupResolver(loginSchema) });
+  } = useForm<UserCredentials>({ resolver: yupResolver(loginSchema) });
+  const navigate = useNavigate();
 
-  const onSubmit = () => {
-    console.log("login submit");
+  const onSubmit = async (data: UserCredentials) => {
+    try {
+      await loginUser(data);
+      navigate("/conversations");
+    } catch (err) {
+      console.log(err);
+    }
   };
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
