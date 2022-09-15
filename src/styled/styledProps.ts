@@ -1,5 +1,7 @@
 export interface InputContainerProps {
-  marginBottom?: string;
+  margin?: string;
+  backgroundColor?: string;
+  color?: string;
 }
 export interface PageProps {
   display?: string;

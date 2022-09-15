@@ -31,7 +31,7 @@ const LoginForm = () => {
   };
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
-      <InputContainer marginBottom="8px">
+      <InputContainer margin="0 0 8px 0">
         <InputLabel htmlFor="email">Email</InputLabel>
         {/* eslint-disable-next-line react/jsx-props-no-spreading */}
         <InputField id="email" {...register("email")} />
