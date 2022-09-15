@@ -7,10 +7,13 @@ export const Form = styled.form`
 
 export const InputContainer = styled.div<InputContainerProps>`
   width: 100%;
-  background-color: ${(props) => props.theme.dark};
+  background-color: ${(props) =>
+    props.backgroundColor
+      ? props.theme[`${props.backgroundColor}`]
+      : props.theme.dark};
   padding: 12px 16px;
   border-radius: ${(props) => props.theme.borderRadius};
-  margin-bottom: ${(props) => props.marginBottom || "0"};
+  margin: ${(props) => props.margin || "0"};
 `;
 
 export const InputField = styled.input`
@@ -37,4 +40,20 @@ export const FlexBox = styled.div`
   align-content: center;
   margin: 8px 0px;
   gap: 8px;
+`;
+
+export const TextField = styled.textarea`
+  color: #fff;
+  background-color: inherit;
+  outline: none;
+  border: none;
+  font-size: 16px;
+  width: 100%;
+  margin: 4px 0;
+  resize: none;
+  font-family: inherit;
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
 `;

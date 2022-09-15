@@ -1,9 +1,15 @@
+import { useContext } from "react";
 import { StyledConversationChannel } from "../../styled/conversation";
+import {
+  AuthContext,
+  AuthContextInterface,
+} from "../../utils/context/AuthContext";
 
 const ConversationChannel = () => {
+  const { user } = useContext(AuthContext) as AuthContextInterface;
   return (
     <StyledConversationChannel>
-      <header>Conversation Channel</header>
+      {user && user.firstName}
     </StyledConversationChannel>
   );
 };
