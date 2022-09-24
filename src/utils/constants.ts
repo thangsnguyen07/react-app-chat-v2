@@ -9,4 +9,6 @@ export const API = {
   REGISTER: "auth/register",
   LOGIN: "auth/login",
   AUTH: "auth/status",
+  CONVERSATIONS: "conversations",
+  MESSAGES: "messages",
 };

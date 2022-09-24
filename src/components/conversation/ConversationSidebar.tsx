@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useContext, useState } from "react";
 import {
   ConversationSidebarContainer,
   ConversationSidebarHeader,
@@ -12,6 +12,10 @@ import { FiEdit } from "react-icons/fi";
 import { Conversation } from "../../utils/interfaces";
 import { useNavigate } from "react-router-dom";
 import CreateConversationModal from "../modals/CreateConversationModal";
+import {
+  AuthContext,
+  AuthContextInterface,
+} from "../../utils/context/AuthContext";
 
 interface Props {
   conversations: Conversation[];
@@ -19,13 +23,21 @@ interface Props {
 
 const ConversationSidebar: FC<Props> = ({ conversations }) => {
   const navigate = useNavigate();
+  const { user } = useContext(AuthContext) as AuthContextInterface;
   const [showModal, setShowModal] = useState<boolean>(false);
 
-  const onConversationClick = (conversationId: string): void => {
+  const onConversationClick = (conversationId: number): void => {
     navigate(`${conversationId}`);
   };
 
   const toggleModal = () => setShowModal((prev) => !prev);
+
+  const getDisplayUser = (conversation: Conversation) => {
+    const userId = user?.id;
+    const { creator, recipient } = conversation;
+
+    return creator.id === userId ? recipient.firstName : creator.firstName;
+  };
 
   return (
     <>
@@ -46,10 +58,10 @@ const ConversationSidebar: FC<Props> = ({ conversations }) => {
               <ConversationSidebarItemAvatar></ConversationSidebarItemAvatar>
               <div>
                 <ConversationSidebarItemName>
-                  {conversation.name}
+                  {getDisplayUser(conversation)}
                 </ConversationSidebarItemName>
                 <ConversationSidebarItemMessage>
-                  {conversation.lastMessage}
+                  {/* {conversation.lastMessage} */}
                 </ConversationSidebarItemMessage>
               </div>
             </ConversationSidebarItem>

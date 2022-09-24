@@ -9,3 +9,7 @@ export interface PageProps {
   justifyContent?: string;
   alignItems?: string;
 }
+
+export interface MessageItemContentProps {
+  margin?: string;
+}

@@ -1,7 +1,16 @@
 export interface Conversation {
-  id: string;
-  name: string;
-  lastMessage: string;
+  id: number;
+  creator: User;
+  recipient: User;
+  lastMessage: Message;
+  createdAt: number;
+}
+
+export interface Message {
+  id: number;
+  content: string;
+  author: User;
+  createdAt: number;
 }
 
 export interface RegisterParams {
