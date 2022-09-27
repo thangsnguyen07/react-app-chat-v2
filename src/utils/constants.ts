@@ -12,3 +12,8 @@ export const API = {
   CONVERSATIONS: "conversations",
   MESSAGES: "messages",
 };
+
+export const SOCKET = {
+  CONNECTED: "connected",
+  ON_MESSAGE: "onMessage",
+};

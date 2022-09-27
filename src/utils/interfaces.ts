@@ -3,14 +3,14 @@ export interface Conversation {
   creator: User;
   recipient: User;
   lastMessage: Message;
-  createdAt: number;
+  createdAt: Date;
 }
 
 export interface Message {
   id: number;
   content: string;
   author: User;
-  createdAt: number;
+  createdAt: string;
 }
 
 export interface RegisterParams {
@@ -26,8 +26,16 @@ export interface UserCredentials {
 }
 
 export interface User {
-  id: string;
+  id: number;
   email: string;
   firstName: string;
   lastName: string;
+}
+
+export interface MessageEventPayload {
+  id: number;
+  content: string;
+  conversation: Conversation;
+  author: User;
+  createdAt: string;
 }

@@ -75,9 +75,9 @@ export const ConversationSidebarItemMessage = styled.span`
 export const StyledMessagePanel = styled.div`
   background: inherit;
   height: 100%;
-  display: flex;
-  flex-direction: column;
-  position: relative;
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* position: relative; */
 `;
 
 export const StyledMessageContainer = styled.div`
@@ -149,17 +149,18 @@ export const MessageItemContent = styled.div<MessageItemContentProps>`
 `;
 
 export const StyledMessagePanelHeader = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
+  /* position: absolute; */
+  /* top: 0; */
+  /* left: 0; */
+  /* right: 0; */
   background-color: ${(props) => props.theme.dark};
   height: ${SIDEBAR_HEADER_HEIGHT};
 `;
 
 export const MessagePanelBody = styled.div`
-  height: 100%;
+  height: calc(100% - ${SIDEBAR_HEADER_HEIGHT});
   display: flex;
   flex-direction: column;
-  padding: ${SIDEBAR_HEADER_HEIGHT} 16px 0;
+  padding: 0 16px;
+  /* padding: ${SIDEBAR_HEADER_HEIGHT} 16px 0; */
 `;

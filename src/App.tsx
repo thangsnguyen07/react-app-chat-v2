@@ -10,29 +10,32 @@ import RegisterPage from "./pages/RegisterPage";
 import { GlobalStyle, theme } from "./styled/global";
 import { ROUTE } from "./utils/constants";
 import AuthProvider from "./utils/context/AuthContext";
+import SocketProvider from "./utils/context/SocketContext";
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
       <AuthProvider>
-        <BrowserRouter>
-          <Routes>
-            <Route path={ROUTE.REGISTER} element={<RegisterPage />}></Route>
-            <Route path={ROUTE.LOGIN} element={<LoginPage />}></Route>
-            <Route
-              path={ROUTE.CONVERSATIONS}
-              element={
-                <ProtectedRoute>
-                  <ConversationPage />
-                </ProtectedRoute>
-              }
-            >
-              <Route index element={<ConversationChannelDefault />} />
-              <Route path=":id" element={<ConversationChannel />} />
-            </Route>
-          </Routes>
-        </BrowserRouter>
+        <SocketProvider>
+          <BrowserRouter>
+            <Routes>
+              <Route path={ROUTE.REGISTER} element={<RegisterPage />}></Route>
+              <Route path={ROUTE.LOGIN} element={<LoginPage />}></Route>
+              <Route
+                path={ROUTE.CONVERSATIONS}
+                element={
+                  <ProtectedRoute>
+                    <ConversationPage />
+                  </ProtectedRoute>
+                }
+              >
+                <Route index element={<ConversationChannelDefault />} />
+                <Route path=":id" element={<ConversationChannel />} />
+              </Route>
+            </Routes>
+          </BrowserRouter>
+        </SocketProvider>
       </AuthProvider>
     </ThemeProvider>
   );

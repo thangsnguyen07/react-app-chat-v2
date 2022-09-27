@@ -58,7 +58,7 @@ const MessageContainer = ({ messages }: Props) => {
       const nextMessage = arr[index + 1];
 
       if (arr.length === index + 1) {
-        console.log("End of array");
+        // console.log("End of array");
         return (
           <FormattedMessage key={message.id} user={user} message={message} />
         );
