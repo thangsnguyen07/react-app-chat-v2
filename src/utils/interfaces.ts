@@ -39,3 +39,8 @@ export interface MessageEventPayload {
   author: User;
   createdAt: string;
 }
+
+export interface CreateMessageParams {
+  content: string;
+  conversationId: number;
+}

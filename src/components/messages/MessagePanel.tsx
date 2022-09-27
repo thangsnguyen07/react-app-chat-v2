@@ -1,3 +1,6 @@
+import { useState } from "react";
+import { useParams } from "react-router-dom";
+import { sendMessage } from "../../services/messages.service";
 import {
   MessagePanelBody,
   StyledMessagePanel,
@@ -12,12 +15,30 @@ interface Props {
 }
 
 const MessagePanel = ({ messages }: Props) => {
+  const { id } = useParams();
+  const [content, setContent] = useState<string>("");
+  const handleSendMessage = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (!id || !content) return;
+
+    try {
+      await sendMessage({ content, conversationId: parseInt(id) });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <StyledMessagePanel>
       <MessagePanelHeader />
       <MessagePanelBody>
         <MessageContainer messages={messages} />
-        <MessageInputField />
+        <MessageInputField
+          content={content}
+          setContent={setContent}
+          onSubmit={handleSendMessage}
+        />
       </MessagePanelBody>
     </StyledMessagePanel>
   );

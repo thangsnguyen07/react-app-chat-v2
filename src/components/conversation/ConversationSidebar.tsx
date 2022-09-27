@@ -36,7 +36,9 @@ const ConversationSidebar: FC<Props> = ({ conversations }) => {
     const userId = user?.id;
     const { creator, recipient } = conversation;
 
-    return creator.id === userId ? recipient.firstName : creator.firstName;
+    return creator.id === userId
+      ? `${recipient.firstName} ${recipient.lastName}`
+      : `${creator.firstName} ${creator.lastName}`;
   };
 
   return (

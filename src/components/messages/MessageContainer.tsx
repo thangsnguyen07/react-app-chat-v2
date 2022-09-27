@@ -1,5 +1,5 @@
 import { formatRelative } from "date-fns";
-import { useContext } from "react";
+import { memo, useContext } from "react";
 import {
   MessageItemAuthor,
   MessageItemAvatar,
@@ -51,6 +51,8 @@ function FormattedMessage({ user, message }: FormattedMessageProps) {
 const MessageContainer = ({ messages }: Props) => {
   const { user } = useContext(AuthContext) as AuthContextInterface;
 
+  console.log("render");
+
   const formatMessage = () => {
     return messages.map((message, index, arr) => {
       // console.log(index);
@@ -80,31 +82,7 @@ const MessageContainer = ({ messages }: Props) => {
     });
   };
 
-  return (
-    <StyledMessageContainer>
-      {formatMessage()}
-      {/* {messages.map((message, index, messageArray) => (
-        <MessageItemContainer key={message.id}>
-          <MessageItemAvatar />
-          <MessageItemDetails>
-            <MessageItemHeader>
-              <MessageItemAuthor
-                style={{
-                  color: user?.id === message.author.id ? "orange" : "#13ddab",
-                }}
-              >
-                {message.author.firstName} {message.author.lastName}
-              </MessageItemAuthor>
-              <MessageItemTime>
-                {formatRelative(new Date(message.createdAt), new Date())}
-              </MessageItemTime>
-            </MessageItemHeader>
-            <MessageItemContent>{message.content}</MessageItemContent>
-          </MessageItemDetails>
-        </MessageItemContainer>
-      ))} */}
-    </StyledMessageContainer>
-  );
+  return <StyledMessageContainer>{formatMessage()}</StyledMessageContainer>;
 };
 
-export default MessageContainer;
+export default memo(MessageContainer);
